@@ -11,6 +11,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::query()->get();
+        if($posts->isEmpty()){
+            abort(404);
+        }
         return view('templates.base.news-list', compact('posts'));
     }
 
