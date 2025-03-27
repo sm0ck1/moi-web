@@ -33,9 +33,9 @@ class PostController extends Controller
 
     public function getAllPosts()
     {
-        $post = Post::query()->get();
+        $post = Post::query()->latest()->withoutGlobalScopes()->with('domain')->get();
         $content = $post->map(function ($item) {
-            return 'https://' . $_SERVER['HTTP_HOST'] . '/' . $item->slug . '/' . $item->id;
+            return 'https://' . $item->domain->name . '/' . $item->slug . '/' . $item->id;
         })->implode("\n");
         return response($content, 200, [
             'Content-Type' => 'text/plain'
