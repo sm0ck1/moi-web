@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Api\SetDomainRequest;
-use App\Http\Requests\api\SetPostRequest;
+use App\Http\Requests\Api\SetPostRequest;
 use App\Models\Domain;
 use App\Models\Post;
 use App\Models\Topic;
