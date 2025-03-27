@@ -2,6 +2,12 @@
 
 @section('title', $posts[0]->title)
 @section('meta_description', $posts[0]->description)
+@section('og_title', $posts[0]->title)
+@section('og_description', $posts[0]->description)
+@section('og_image', $posts[0]->image)
+@section('twitter_title', $posts[0]->title)
+@section('twitter_description', $posts[0]->description)
+@section('twitter_image', $posts[0]->image)
 
 @section('content')
     <div class="flex flex-col md:flex-row gap-6">

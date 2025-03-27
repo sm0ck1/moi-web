@@ -13,7 +13,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="@yield('og_title', config('app.name', 'Новостной сайт'))">
     <meta property="og:description" content="@yield('og_description', 'Ваше описание по умолчанию')">
-    <meta property="og:image" content="@yield('og_image', asset('path/to/default-image.jpg'))">
+    <meta property="og:image" content="@yield('og_image', '{{ $item->image }}&w=200&h=200&c=1&o=1')">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
