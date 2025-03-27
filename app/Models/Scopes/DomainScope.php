@@ -13,8 +13,10 @@ class DomainScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->whereHas('domain', function (Builder $query) {
-            $query->where('name', $_SERVER['HTTP_HOST']);
-        })->orderBy('created_at', 'desc');
+        if($_SERVER['HTTP_HOST'] != 'moi-web.test'){
+            $builder->whereHas('domain', function (Builder $query) {
+                $query->where('name', $_SERVER['HTTP_HOST']);
+            })->orderBy('created_at', 'desc');
+        }
     }
 }

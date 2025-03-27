@@ -24,6 +24,9 @@
                         </div>
                     </article>
                 @endforeach
+                    <div class="pagination flex justify-center items-center space-x-2 my-4">
+                        {{ $posts->links('templates.base.pagination') }}
+                    </div>
             </div>
         </div>
 

@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::query()->get();
+        $posts = Post::query()->paginate(20);
         if($posts->isEmpty()){
             abort(404);
         }
