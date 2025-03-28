@@ -8,6 +8,7 @@ use App\Models\Domain;
 use App\Models\Post;
 use App\Models\Topic;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ApiController extends Controller
 {
@@ -77,8 +78,10 @@ class ApiController extends Controller
             ]);
         }
 
+        $domain = collect($checkDomain)->random();
+
         $post = Post::query()->create([
-            'domain_id' => collect($checkDomain)->random()->id,
+            'domain_id' => $domain->id,
             'text' => $request->get('text'),
             'title' => $request->get('title'),
             'description' => $request->get('description'),
@@ -86,6 +89,7 @@ class ApiController extends Controller
         ]);
         return response()->json([
             'post' => $post,
+            'link' => 'https://' . $domain->name . '/' . Str::slug($post->title) . '/' . $post->id,
         ]);
 
     }
