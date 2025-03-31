@@ -11,6 +11,22 @@
 
 @section('content')
     <div class="flex flex-col md:flex-row gap-6">
+        <div class="w-full md:w-1/3">
+            <div class="bg-white rounded-lg shadow-md p-6 sticky top-4">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5063920583143502"
+                        crossorigin="anonymous"></script>
+                <!-- sidebar news -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-5063920583143502"
+                     data-ad-slot="3892745601"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
         <div class="w-full md:w-2/3">
             <div class="flex flex-col gap-6">
                 @foreach($posts as $item)
@@ -36,12 +52,6 @@
             </div>
         </div>
 
-        <div class="w-full md:w-1/3">
-            <div class="bg-white rounded-lg shadow-md p-6 sticky top-4">
-                <div class="h-96 bg-gray-200 flex items-center justify-center text-gray-500">
 
-                </div>
-            </div>
-        </div>
     </div>
 @endsection

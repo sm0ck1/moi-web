@@ -102,8 +102,19 @@
                 <div class="flex flex-col md:flex-row gap-6">
                     <img src="{{$post->image}}&w=200&h=200&c=1&o=1" alt="{{ $post->title }}"
                          class="w-full">
-                    <div class="bg-gray-200 flex items-center justify-center text-gray-500 w-full">
-
+                    <div class="w-full">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5063920583143502"
+                                crossorigin="anonymous"></script>
+                        <!-- top in news -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-5063920583143502"
+                             data-ad-slot="4646589929"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                     </div>
                 </div>
 
