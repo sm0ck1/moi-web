@@ -37,7 +37,7 @@ class SitemapController extends Controller
             ->render();
 
         return response($content, 200, [
-            'Content-Type' => 'application/xml',
+            'Content-Type' => 'application/rss+xml; charset=UTF-8',
         ]);
     }
 
