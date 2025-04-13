@@ -25,7 +25,7 @@ class Post extends Model
 
     protected $appends = [
         'image',
-        'slug'
+        'slug',
     ];
 
     public function domain()
@@ -36,7 +36,8 @@ class Post extends Model
     public function getImageAttribute(): string
     {
         $random = Helper::firstLetters($this->title);
-        return 'https://'.$random.'.mm.bing.net/th?q=' . urlencode($this->title);
+
+        return 'https://'.$random.'.mm.bing.net/th?q='.urlencode($this->title);
     }
 
     public function getSlugAttribute(): string
@@ -44,7 +45,7 @@ class Post extends Model
         if (empty($this->slug)) {
             return Str::slug($this->title);
         }
+
         return '';
     }
-
 }

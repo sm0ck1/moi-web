@@ -6,8 +6,7 @@ use Illuminate\Support\Str;
 
 class Helper
 {
-
-    static function generateString($strength = 16): string
+    public static function generateString($strength = 16): string
     {
         $input = 'abcdefghijklmnopqrstuvwxyz';
         $input_length = strlen($input);
@@ -20,11 +19,12 @@ class Helper
         return $random_string;
     }
 
-    static function firstLetters($text, $limit = 4): string
+    public static function firstLetters($text, $limit = 4): string
     {
         $text = strtolower($text);
         $text = Str::slug($text);
-        $text = preg_replace("/[^a-z0-9]/", "", $text);
+        $text = preg_replace('/[^a-z0-9]/', '', $text);
+
         return str_split($text, $limit)[0];
     }
 }

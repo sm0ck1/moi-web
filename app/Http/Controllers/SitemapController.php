@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class SitemapController extends Controller
@@ -21,7 +20,7 @@ class SitemapController extends Controller
                 ->render();
 
             return response($content, 200, [
-                'Content-Type' => 'application/xml'
+                'Content-Type' => 'application/xml',
             ]);
         });
     }
@@ -32,21 +31,21 @@ class SitemapController extends Controller
         $sitemapUrl = url('sitemap.xml');
 
         $disallowPaths = [
-            'Disallow: /*?*'
+            'Disallow: /*?*',
         ];
 
         // Generate robots.txt content
         $content = implode("\n", array_filter([
-            "User-agent: *",
+            'User-agent: *',
             ...$disallowPaths,
-            "Allow: /",
+            'Allow: /',
             "Sitemap: {$sitemapUrl}",
 
         ]));
 
         // Return as plain text response
         return response($content, 200, [
-            'Content-Type' => 'text/plain'
+            'Content-Type' => 'text/plain',
         ]);
     }
 }

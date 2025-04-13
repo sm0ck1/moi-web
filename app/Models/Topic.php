@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
-
     protected $fillable = [
         'name',
         'template_folder',
-        'topic_id'
+        'topic_id',
     ];
 }

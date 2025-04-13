@@ -17,11 +17,12 @@ class ApiAccessMiddleware
     {
         if (env('API_ACCESS') !== $request->header('api-access')) {
             return response([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 403);
 
         }
         $request->headers->set('Accept', 'application/json');
+
         return $next($request);
     }
 }

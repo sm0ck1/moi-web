@@ -24,10 +24,22 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="@yield('canonical_url', url()->current())">
+    <link rel="amphtml" href="@yield('canonical_url', url()->current())/amp">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
     @stack('styles')
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7P7XJLBB7H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-7P7XJLBB7H');
+    </script>
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5063920583143502"
             crossorigin="anonymous"></script>
 </head>

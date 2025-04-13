@@ -12,22 +12,21 @@ use Illuminate\Support\Str;
 
 class ApiController extends Controller
 {
-
     public function setDomain(SetDomainRequest $request)
     {
         $topic = Topic::query()->where('name', $request->get('topic_name'))->first();
-        if (!$topic) {
+        if (! $topic) {
             $topic = Topic::query()->create([
                 'name' => $request->get('topic_name'),
             ]);
-            //create folder
+            // create folder
             $path = resource_path("views/templates/{$topic->id}");
 
             File::makeDirectory($path, 0755, true, true);
         }
 
         $checkDomain = Domain::where('name', $request->get('name'))->first();
-        if (!$checkDomain) {
+        if (! $checkDomain) {
             $checkDomain = Domain::query()->create([
                 'name' => $request->get('name'),
                 'topic_id' => $topic->id,
@@ -44,6 +43,7 @@ class ApiController extends Controller
     {
 
         $domain = Domain::query()->where('topic_id', $topic->id)->get();
+
         return response()->json([
             'domain' => $domain->random(),
         ]);
@@ -53,6 +53,7 @@ class ApiController extends Controller
     public function getTopics(): \Illuminate\Http\JsonResponse
     {
         $topics = Topic::all();
+
         return response()->json($topics);
 
     }
@@ -60,18 +61,18 @@ class ApiController extends Controller
     public function setPosts(SetPostRequest $request): \Illuminate\Http\JsonResponse
     {
         $topic = Topic::query()->where('name', $request->get('topic_name'))->first();
-        if (!$topic) {
+        if (! $topic) {
             $topic = Topic::query()->create([
                 'name' => $request->get('topic_name'),
             ]);
-            //create folder
+            // create folder
             $path = resource_path("views/templates/{$topic->id}");
 
             File::makeDirectory($path, 0755, true, true);
         }
 
         $checkDomain = Domain::query()->get();
-        if (!$checkDomain) {
+        if (! $checkDomain) {
             $checkDomain[] = Domain::query()->create([
                 'name' => $_SERVER['HTTP_HOST'],
                 'topic_id' => $topic->id,
@@ -85,11 +86,12 @@ class ApiController extends Controller
             'text' => $request->get('text'),
             'title' => $request->get('title'),
             'description' => $request->get('description'),
-            'tags' => explode(',',$request->get('tags')),
+            'tags' => explode(',', $request->get('tags')),
         ]);
+
         return response()->json([
             'post' => $post,
-            'link' => 'https://' . $domain->name . '/' . Str::slug($post->title) . '/' . $post->id,
+            'link' => 'https://'.$domain->name.'/'.Str::slug($post->title).'/'.$post->id,
         ]);
 
     }
