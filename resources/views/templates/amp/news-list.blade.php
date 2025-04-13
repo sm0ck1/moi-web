@@ -52,7 +52,6 @@
                             </a>
                         @endif
 
-                        {{-- Page Numbers - Limited for mobile --}}
                         @php
                             $currentPage = $posts->currentPage();
                             $lastPage = $posts->lastPage();
@@ -78,7 +77,6 @@
                             @endif
                         @endfor
 
-                        {{-- Next Page Link --}}
                         @if ($posts->hasMorePages())
                             <a href="{{ $posts->nextPageUrl() }}" class="pagination-item pagination-item-link">
                                 &raquo;

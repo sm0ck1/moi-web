@@ -9,7 +9,34 @@
 @section('twitter_description', $post->description)
 @section('twitter_image', $post->image)
 @section('canonical_url', route('posts.show', [$post->slug, $post->id]))
-
+@push('head')
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ route('posts.show', [$post->slug, $post->id]) }}"
+  },
+  "headline": "{{ $post->title }}",
+  "image": [
+    "{{ $post->image }}"
+  ],
+  "datePublished": "{{ $post->created_at->toIso8601String() }}",
+  "dateModified": "{{ $post->updated_at->toIso8601String() ?? $post->created_at->toIso8601String() }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ $post->author ?? 'Admin' }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ $_SERVER['HTTP_HOST'] }}",
+    "url": "{{ asset('publisher-logo.png') }}"
+  },
+  "description": "{{ $post->description }}"
+}
+    </script>
+@endpush
 @push('styles')
     <style>
         /* Enhanced Typography and Content Styles */

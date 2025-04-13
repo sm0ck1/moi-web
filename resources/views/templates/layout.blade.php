@@ -29,6 +29,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     @stack('styles')
+    @stack('head')
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7P7XJLBB7H"></script>

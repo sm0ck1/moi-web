@@ -9,7 +9,7 @@ class SitemapController extends Controller
 {
     public function generate()
     {
-        return Cache::remember('sitemap', now()->addHours(6), function () {
+        return Cache::remember('sitemap', now()->addHours(1), function () {
 
             $posts = Post::query()
                 ->orderBy('created_at', 'desc')
@@ -23,6 +23,22 @@ class SitemapController extends Controller
                 'Content-Type' => 'application/xml',
             ]);
         });
+    }
+
+    public function generateRss()
+    {
+
+        $posts = Post::query()
+            ->orderBy('created_at', 'desc')
+            ->limit(20) // Limit to prevent extremely large sitemaps
+            ->get();
+
+        $content = view('templates.rss', compact('posts'))
+            ->render();
+
+        return response($content, 200, [
+            'Content-Type' => 'application/xml',
+        ]);
     }
 
     public function robots()

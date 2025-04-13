@@ -14,5 +14,6 @@ Route::get('/{slug}/{post}', [PostController::class, 'show'])->name('posts.show'
 Route::get('/{slug}/{post}/amp', [PostController::class, 'show'])->name('posts.amp.show');
 
 Route::get('/sitemap.xml', [SitemapController::class, 'generate']);
+Route::get('/rss.xml', [SitemapController::class, 'generateRss']);
 Route::get('/robots.txt', [SitemapController::class, 'robots']);
 Route::get('/get-all-posts', [PostController::class, 'getAllPosts']);

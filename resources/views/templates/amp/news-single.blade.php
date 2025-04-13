@@ -9,7 +9,37 @@
 @section('twitter_description', $post->description)
 @section('twitter_image', $post->image)
 @section('canonical_url', route('posts.show', [$post->slug, $post->id]))
-
+@push('head')
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ route('posts.show', [$post->slug, $post->id]) }}"
+  },
+  "headline": "{{ $post->title }}",
+  "image": [
+    "{{ $post->image }}"
+  ],
+  "datePublished": "{{ $post->created_at->toIso8601String() }}",
+  "dateModified": "{{ $post->updated_at->toIso8601String() ?? $post->created_at->toIso8601String() }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ $post->author ?? 'Admin' }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ $_SERVER['HTTP_HOST'] }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ asset('publisher-logo.png') }}"
+    }
+  },
+  "description": "{{ $post->description }}"
+}
+    </script>
+@endpush
 @section('content')
     <div class="card-grid">
         <div>
@@ -47,7 +77,6 @@
 
                     <div class="article-content">
                         @php
-                            // Преобразование HTML-контента в AMP-совместимый с улучшениями для мобильных
                             $ampContent = preg_replace(
                                 [
                                     '/<img([^>]+)>/i',
@@ -66,7 +95,6 @@
                                 $post->text
                             );
 
-                            // Закрываем div для адаптивных таблиц
                             $ampContent = str_replace('</table>', '</table></div>', $ampContent);
                         @endphp
 

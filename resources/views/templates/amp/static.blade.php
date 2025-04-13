@@ -10,16 +10,14 @@
         <div class="container">
             <article class="card">
                 <div class="card-content">
-                    <!-- Преобразование содержимого в AMP-совместимый формат с улучшениями для мобильных -->
                     @php
-                        // Преобразование HTML-контента в AMP-совместимый
                         $ampContent = preg_replace(
                             [
                                 '/<img([^>]+)>/i',
                                 '/<iframe([^>]+)>/i',
                                 '/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/i',
-                                '/<table([^>]*)>/i',  // Делаем таблицы адаптивными
-                                '/<blockquote([^>]*)>/i'  // Стилизуем цитаты
+                                '/<table([^>]*)>/i',
+                                '/<blockquote([^>]*)>/i'
                             ],
                             [
                                 '<amp-img$1 layout="responsive" width="800" height="400"></amp-img>',
@@ -31,17 +29,14 @@
                             $content
                         );
 
-                        // Закрываем div для адаптивных таблиц
                         $ampContent = str_replace('</table>', '</table></div>', $ampContent);
 
-                        // Увеличиваем размеры шрифтов заголовков для лучшей читаемости на мобильных
                         $ampContent = preg_replace(
                             '/<h([1-6])([^>]*)>/i',
                             '<h$1$2 class="mobile-heading-$1">',
                             $ampContent
                         );
 
-                        // Улучшаем отступы для списков на мобильных
                         $ampContent = str_replace(
                             ['<ul>', '<ol>'],
                             ['<ul class="mobile-list">', '<ol class="mobile-list">'],
@@ -53,7 +48,6 @@
                 </div>
             </article>
 
-            <!-- Добавляем рекламный блок для мобильных устройств -->
             <div class="ad-container">
                 <amp-ad width="300"
                         height="250"
@@ -65,7 +59,6 @@
             </div>
         </div>
 
-        <!-- Структурированные данные для статической страницы -->
         <script type="application/ld+json">
             {
                 "@context": "http://schema.org",

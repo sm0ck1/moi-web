@@ -3,42 +3,36 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    <title>@yield('title', config('app.name', 'Новостной сайт'))</title>
-    <meta name="description" content="@yield('meta_description', 'Ваше описание по умолчанию')">
+    <title>@yield('title', config('app.name', $_SERVER['HTTP_HOST']))</title>
+    <meta name="description" content="@yield('meta_description', '')">
 
-    <!-- Канонический URL -->
     <link rel="canonical" href="@yield('canonical_url', url()->current())">
 
-    <!-- Обязательный тег для AMP -->
     <script async src="https://cdn.ampproject.org/v0.js"></script>
 
-    <!-- Обязательные стили AMP -->
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
-    <!-- Подключение компонентов AMP -->
     <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-    <!-- Добавляем поддержку AMP sidebar для мобильной навигации -->
+
     <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('og_title', config('app.name', 'Новостной сайт'))">
-    <meta property="og:description" content="@yield('og_description', 'Ваше описание по умолчанию')">
+    <meta property="og:title" content="@yield('og_title', config('app.name', $_SERVER['HTTP_HOST']))">
+    <meta property="og:description" content="@yield('og_description', '')">
     <meta property="og:image" content="@yield('og_image')">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('twitter_title', config('app.name', 'Новостной сайт'))">
-    <meta property="twitter:description" content="@yield('twitter_description', 'Ваше описание по умолчанию')">
+    <meta property="twitter:title" content="@yield('twitter_title', config('app.name',  $_SERVER['HTTP_HOST']))">
+    <meta property="twitter:description" content="@yield('twitter_description', '')">
     <meta property="twitter:image" content="@yield('twitter_image')">
 
-    <!-- AMP пользовательские стили (должны быть встроены и ограничены 50KB) -->
     <style amp-custom>
-        /* Базовые стили */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
@@ -49,7 +43,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Контейнер */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -58,7 +51,6 @@
             box-sizing: border-box;
         }
 
-        /* Шапка */
         .header {
             background-color: #fff;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -123,12 +115,10 @@
             text-align: right;
         }
 
-        /* Основное содержимое */
         .main-content {
             margin: 1rem 0;
         }
 
-        /* Карточки новостей */
         .card {
             background-color: #fff;
             border-radius: 0.5rem;
@@ -143,7 +133,6 @@
             gap: 1rem;
         }
 
-        /* Responsive grid */
         @media (min-width: 768px) {
             .card-grid {
                 grid-template-columns: 2fr 1fr;
@@ -228,7 +217,6 @@
             align-items: center;
         }
 
-        /* Стили для статьи */
         .article-title {
             font-size: 1.5rem;
             font-weight: bold;
