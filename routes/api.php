@@ -1,4 +1,4 @@
-GeminiAi.php<?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 

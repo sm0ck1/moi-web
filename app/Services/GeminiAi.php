@@ -33,7 +33,7 @@ class GeminiAi
         }
     }
 
-    public function request($query = '', $model = 'gemini-2.0-flash-lite')
+    public function request($query = '', $model = 'gemini-2.0-flash-lite'): string|static
     {
         if ($model) {
             $this->model = $model;
