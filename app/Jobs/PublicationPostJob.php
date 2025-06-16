@@ -11,6 +11,12 @@ class PublicationPostJob implements ShouldQueue
 {
     use Queueable;
 
+    // Количество попыток выполнения задания при возникновении ошибок
+    public $tries = 3;
+
+    // Время ожидания между повторными попытками (в секундах)
+    public $backoff = 300; // 5 минут
+
     private DirtyPost $dirtyPost;
 
     /**
