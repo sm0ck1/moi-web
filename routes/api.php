@@ -10,6 +10,7 @@ Route::middleware(\App\Http\Middleware\ApiAccessMiddleware::class)->group(functi
 
     Route::prefix('post')->group(function () {
         Route::post('/', [\App\Http\Controllers\ApiController::class, 'setPosts']);
+        Route::post('/set', [\App\Http\Controllers\ApiController::class, 'setDirtyPost']);
     });
 
     Route::prefix('domain')->group(function () {

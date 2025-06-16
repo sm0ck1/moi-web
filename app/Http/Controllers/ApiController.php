@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Api\SetDomainRequest;
 use App\Http\Requests\Api\SetPostRequest;
+use App\Http\Requests\CreateDirtyPostRequest;
+use App\Models\DirtyPost;
 use App\Models\Domain;
 use App\Models\Post;
 use App\Models\Topic;
@@ -12,6 +14,18 @@ use Illuminate\Support\Str;
 
 class ApiController extends Controller
 {
+
+    public function setDirtyPost(CreateDirtyPostRequest $request): \Illuminate\Http\JsonResponse
+    {
+
+        $dirty_post = DirtyPost::query()->create($request->validated());
+
+        return response()->json([
+            $dirty_post,
+        ]);
+
+    }
+
     public function setDomain(SetDomainRequest $request)
     {
         $topic = Topic::query()->where('name', $request->get('topic_name'))->first();
